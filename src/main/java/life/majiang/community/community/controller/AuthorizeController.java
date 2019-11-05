@@ -2,7 +2,9 @@ package life.majiang.community.community.controller;
 
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +37,8 @@ public class AuthorizeController {
 	@GetMapping("/callback")
 	public String callback(@RequestParam(name="code") String code, 
 							@RequestParam(name="state")String state,
-							HttpServletRequest request) {
+							//HttpServletRequest request,
+							HttpServletResponse response) {
 		
 		AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
 		accessTokenDTO.setClient_id(clientId);
@@ -51,13 +54,15 @@ public class AuthorizeController {
 		//if user is not null, successful login, 
 		if(githubUser !=null) {
 			User user = new User();
-			user.setToken(UUID.randomUUID().toString());
+			String token = UUID.randomUUID().toString();
+			user.setToken(token);
 			user.setName(githubUser.getLogin());
 			user.setAccountId(String.valueOf(githubUser.getId()));
 			user.setGmtCreate(System.currentTimeMillis());
 			user.setGmtModified(user.getGmtCreate());
 			userMapper.insert(user);
-			request.getSession().setAttribute("user",githubUser);
+			//request.getSession().setAttribute("user",githubUser);
+			response.addCookie(new Cookie("token",token));
 			return "redirect:/";
 		}else {
 		return "redirect:/";
