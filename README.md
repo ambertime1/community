@@ -4,13 +4,15 @@
 [spring docs](https://spring.io/guides)
 [spring web docs]https://spring.io/guides/gs/serving-web-content/
 [spring elastic community]https://elasticsearch.cn/explore
-[sgithub deploy key]https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-key
+[github deploy key]https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-key
 https://developer.github.com/apps/building-github-apps/creating-a-github-app/
+https://mybatis.org/mybatis-3/configuration.html
 https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-sql
 ##tools
 https://git-scm.com/download
 https://v3.bootcss.com
 https://www.visual-paradigm.com
+flyway https://flywaydb.org/getstarted/
 
 ##script
 -- create database community;
@@ -24,3 +26,6 @@ CREATE TABLE community.user
   gmt_create BIGINT,
   gmt_modified BIGINT
   ) ENGINE = InnoDB ROW_FORMAT = DEFAULT;
+  ..
+  ..bash
+  ALTER TABLE user ADD bio VARCHAR(256) NULL;
