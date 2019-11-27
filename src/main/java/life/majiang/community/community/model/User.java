@@ -1,5 +1,8 @@
 package life.majiang.community.community.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
 	public Integer getId() {
 		return id;
@@ -37,11 +40,18 @@ public class User {
 	public void setGmtModified(Long gmtModified) {
 		this.gmtModified = gmtModified;
 	}
+	public String getAvatarUrl() {
+		return avatarUrl;
+	}
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
+	}
 	private Integer id;
 	private String name;
 	private String accountId;
 	private String token;
 	private Long gmtCreate;
 	private Long gmtModified;
+	private String avatarUrl;
 
 }

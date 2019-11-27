@@ -20,7 +20,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="/">Brand</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,25 +68,31 @@
 	  <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
 	  <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Issue</h2>
 	  <hr>
-	  <form action = "">
+	  <form action = "/publish" method="post">
 	    <div class="form-group">
 		    <label for="title">Issue Title</label>
-		    <input type="text" class="form-control" id="title" placeholder="Issue Title">
+		    <input type="text" class="form-control" name="title" id="title" th:value="${title}" placeholder="Issue Title">
+		    
 		</div>
 		<div class="form-group">
-		    <label for="title">Issue Content</label>
-		    <textarea class="form-control" name="description" id="description" cols="30" rows="18"></textarea>
+		    <label for="description">Issue Content</label>
+		    <textarea class="form-control" name="description" id="description" th:text="${description}"cols="30" rows="18"></textarea>
 		</div>
 	    <div class="form-group">
-		    <label for="title">Issue Tag</label>
-		    <input type="text" class="form-control" id="tag" placeholder="Issue Tag Input">
+		    <label for="tag">Issue Tag</label>
+		    <input type="text" class="form-control" name="tag" id="tag" placeholder="Issue Tag Input"><!-- 这里前端通过name 来锚定，引用并且跟服务器之间传递值document.getElementsByName，前端的id是为DOM而存在的，document.getElementsById -->
 		</div>
+		
+		<span class="alert alert-danger" th:text="${error}"></span>
 		<button type="submit" class="btn btn-success btn-publish">Success</button>
 	  </form>
 
 	  </div>
 	  <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
 	  	<h3>Guideline for Issue Initiation</h3>
+	  	question tag:please concise the question description, limted 25 words<br>
+	  	question supplement:detailed appendix of the question, so that it is clear with relevant docs<br>
+	  	choose tag:choose one or more tags that matches the overall of question, limited 10 words<br>
 	  	
 	  </div>
 	</div>
